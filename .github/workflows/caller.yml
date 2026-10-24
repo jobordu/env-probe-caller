@@ -1,0 +1,11 @@
+name: caller-xrepo
+on:
+  workflow_dispatch:
+    inputs:
+      env: { type: string, required: false, default: "" }
+permissions: { contents: read }
+jobs:
+  audit:
+    uses: jobordu/env-probe-scratch/.github/workflows/r-null.yml@7ed3cb18de16ae7064ea59ef7b8f90d21cc9ab34
+    with: { environment: "${{ inputs.env }}" }
+    secrets: { PROBE: "${{ secrets.PROBE }}", ONLYENV: "${{ secrets.ONLYENV }}" }
